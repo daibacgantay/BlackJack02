@@ -1,4 +1,4 @@
 public class card {
-    cho khang
+    chó khang ăn cứt 
     
 }
