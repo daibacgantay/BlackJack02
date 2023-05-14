@@ -1,4 +1,5 @@
 public class card {
-    cho khang
+    chó khang 
+    chó sơn
     
 }
