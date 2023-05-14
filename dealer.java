@@ -1,5 +1,5 @@
 
-public class dealer extends person {
+public class dealer extends man {
     public dealer(){
         super.setName("Dealer");
     }
