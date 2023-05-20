@@ -1,3 +1,5 @@
+package src.com.bj;
+
 import javax.swing.*;
 
 
