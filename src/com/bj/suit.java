@@ -1,6 +1,6 @@
 package src.com.bj;
 
-public enum suit {
+public enum Suit {
     CLUB("Clubs"),
     DIAMOND("Diamonds"),
     HEART("Hearts"),

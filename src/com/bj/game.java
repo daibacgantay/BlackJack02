@@ -1,8 +1,9 @@
 package src.com.bj;
-
 import javax.swing.*;
 
 
+
+import com.kevinsguides.SE;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,7 @@ import java.util.Objects;
 
 /**
  * Contains all Game logic
- */
+ 
 public class Game extends JPanel {
 
     // Constants
@@ -34,15 +35,16 @@ public class Game extends JPanel {
     private JLabel[] lblDealerCards, lblPlayerCards;
     // few more labels for showing important stats
     private JLabel lblScore, lblPlayerHandVal, lblDealerHandVal, lblGameMessage, lblWallpaper;
-    //private Image wallpp;
-    //AudioAsset aa = new AudioAsset();
-	//SE se = new SE();
-	//Music music = new Music();
+    private Image background;
+    
+	SE se = new SE();
+	
 
     /**
      * Constructor for Game, creates our variables and starts the Game
      */
     public Game() {
+    	background = new ImageIcon(IMAGE_DIR + "logo.jpg").getImage().getScaledInstance(800, 600, Image.SCALE_SMOOTH);
 
         // Create a new deck with 52 cards
         deck = new Deck(true);
@@ -65,11 +67,16 @@ public class Game extends JPanel {
      * Set up the GUI for the Game
      * Adds buttons and labels to the JPanel
      */
+   
+    
+   
+   
     private void setupMenu() {
     	this.setSize(800, 500);
     	btnPlay = new JButton("Play");
     	btnPlay.setBounds(330,330, 80, 30);
     	btnPlay.setFocusable(false);
+    	btnPlay.setActionCommand("play");
     	
     	
     	btnExit = new JButton("Exit");
@@ -113,12 +120,13 @@ public class Game extends JPanel {
 
         btnPlay.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {  
+            
             	btnRule.setVisible(false);
             	btnPlay.setVisible(false);
             	btnExit.setVisible(false);
             	lblWallpaper.setVisible(false);
-            	//playSE(aa.start);
+            	playSE(".//res//click.wav");
             	
                 
                 
@@ -138,13 +146,10 @@ public class Game extends JPanel {
         btnRule.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	//this.setVisible;
-            	//initialize();
-            	btnRule.setVisible(false);
-            	btnPlay.setVisible(false);
-            	btnExit.setVisible(false);
-            	lblWallpaper.setVisible(false);
+            	playSE(".//res//click.wav");
             	
+            	
+            	new RuleText();
             	
             }
         });
@@ -156,6 +161,8 @@ public class Game extends JPanel {
 	private void setupGUI() {
         // Size of JPanel
         this.setSize(800, 500);
+        //background = new ImageIcon(".//res//logo.jpg");
+        //this.add(background);
 
         // Make Buttons for "Hit" "Stand" and "Next Round" actions.
         // setBounds is used to define their locations and sizes
@@ -242,6 +249,7 @@ public class Game extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // make the player hit the deck
                 player.hit(deck, discarded);
+                playSE(".//res//hitcard.wav");
                 // update screen with their new card, and their score
                 updateScreen();
                 checkBusts();
@@ -274,6 +282,8 @@ public class Game extends JPanel {
         btnNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	stopSE();
+            	
                 // reset buttons and start next round
                 btnNext.setVisible(false);
                 btnHit.setVisible(true);
@@ -284,12 +294,18 @@ public class Game extends JPanel {
 
     }
 
-    /**
+    
+		// TODO Auto-generated method stub
+		
+	
+
+	/**
      * This is called when player hits "Hit" button to see if they busted
      */
     private void checkBusts() {
         // Check if they busted
         if (player.getHand().calculatedValue() > 21) {
+        	playSE(".//res//vine-boom.wav");
             // show message
             lblGameMessage.setText("You BUST - Over 21");
             // update score
@@ -311,15 +327,19 @@ public class Game extends JPanel {
 
         // Check who wins and count wins or losses
         if (dealer.getHand().calculatedValue() > 21) {
+        	playSE(".//res//win.wav");
             lblGameMessage.setText("Dealer Busts! You win!");
             wins++;
         } else if (dealer.getHand().calculatedValue() > player.getHand().calculatedValue()) {
+        	playSE(".//res//loses.wav");
             lblGameMessage.setText("Dealer wins - Higher hand");
             losses++;
         } else if (player.getHand().calculatedValue() > dealer.getHand().calculatedValue()) {
+        	playSE(".//res//win.wav");
             lblGameMessage.setText("You win - Higher hand");
             wins++;
         } else {
+        	playSE(".//res//raw.wav");
             lblGameMessage.setText("Equal Value Hands - Push");
             pushes++;
         }
@@ -331,6 +351,7 @@ public class Game extends JPanel {
      */
     private void checkPlayer21(){
         if(player.getHand().calculatedValue() == 21){
+        	playSE(".//res//21.wav");
             lblGameMessage.setText("You have 21!");
             //update score
             wins++;
@@ -359,9 +380,12 @@ public class Game extends JPanel {
      * Make the screen background a green color like a card table
      */
     public void paintComponent(Graphics g) {
+    	//
         super.paintComponent(g);
-        g.setColor(Color.decode("#18320e"));
-        g.fillRect(0, 0, 1000, 1000);
+    	g.drawImage(background,0,0,this);
+        
+        //g.setColor(Color.decode("#234F1E"));
+        //g.fillRect(0, 0, 1000, 1000);
     }
 
     /**
@@ -429,6 +453,7 @@ public class Game extends JPanel {
 
             // Check if the player also has BlackJack
             if (player.hasBlackjack()) {
+            	playSE(".//res//raw.wav");
                 // End the round with a push
                 lblGameMessage.setText("Both 21 - Push");
                 pushes++;
@@ -437,6 +462,7 @@ public class Game extends JPanel {
                 btnStand.setVisible(false);
                 btnNext.setVisible(true);
             } else {
+            	playSE(".//res//oi.wav");
                 lblGameMessage.setText("Dealer has Blackjack!");
                 dealer.printHand(lblDealerCards);
                 losses++;
@@ -450,6 +476,7 @@ public class Game extends JPanel {
         // Check if player has blackjack to start
         // If we got to this point, we already know the dealer didn't have blackjack
         if (player.hasBlackjack()) {
+        	playSE(".//res//bj.wav");
             // say player has blackjack
             lblGameMessage.setText("You have Blackjack!");
             // update score
@@ -461,20 +488,20 @@ public class Game extends JPanel {
 
         }
         
-    }}
-//private void playSE(URL url) {
+    }
+private void playSE(String Sound) {
 	
-	//se.setFile(url);
-	//se.play(url);
-//}
-//public void playMusic(URL url) {
+	se.setFile(Sound);
+	se.play();	
+}
+public void playMusic(String Sound) {
 	
-	//music.setFile(url);
-	//music.play(url);
-	//music.loop(url);
-//}
-//public void stopMusic(URL url) {
+	se.setFile(Sound);
+	se.play();
+	se.loop();
+}
+public void stopSE() {
 	
-	//music.stop(url);
-//}
-//}
+	se.stop();
+}
+}
