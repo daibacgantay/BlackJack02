@@ -1,4 +1,4 @@
-
+package src.com.bj;
 public class dealer extends man {
     public dealer(){
         super.setName("Dealer");

@@ -1,3 +1,5 @@
+package src.com.bj;
+
 public class player {
     private int wins, losses, pushes;
     private Deck deck, discarded;

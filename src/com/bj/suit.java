@@ -1,3 +1,5 @@
+package src.com.bj;
+
 public enum suit {
     CLUB("Clubs"),
     DIAMOND("Diamonds"),

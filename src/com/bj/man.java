@@ -1,5 +1,6 @@
-import java.swing;
+package src.com.bj;
 
+import java.swing;
 import javax.swing.JLabel;
 
 import java.awt;

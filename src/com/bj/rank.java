@@ -1,3 +1,5 @@
+package src.com.bj;
+
 public enum rank{
     ACE("Ace", 11),
     TWO("Two", 2),
