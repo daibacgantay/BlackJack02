@@ -1,14 +1,14 @@
-public class card implements Comparable<card> {
+public class Card implements Comparable<Card> {
     private suit suit;
     private rank rank;
 
 
-    public card(suit suit, rank rank){
+    public Card(suit suit, rank rank){
         this.suit = suit;
         this.rank = rank;
     }
 
-    public card(card card){
+    public Card(Card card){
         this.suit = card.getsuit();
         this.rank = card.getrank();
     }
@@ -28,7 +28,7 @@ public class card implements Comparable<card> {
     }
 
 
-    public int compareTo(card c){
+    public int compareTo(Card c){
         if(this.getValue() > c.getValue()){
             return 1;
         }

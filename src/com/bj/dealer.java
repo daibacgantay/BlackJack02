@@ -1,6 +1,6 @@
 
-public class dealer extends man {
-    public dealer(){
+public class Dealer extends man {
+    public Dealer(){
         super.setName("Dealer");
     }
     public void printFirstHand(){

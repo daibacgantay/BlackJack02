@@ -1,4 +1,4 @@
-public class player {
+public class Player {
     private int wins, losses, pushes;
     private Deck deck, discarded;
     private Player player;
