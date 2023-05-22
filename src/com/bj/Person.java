@@ -1,3 +1,4 @@
+package src.com.bj;
 import javax.swing.*;
 import java.awt.*;
 

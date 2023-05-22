@@ -1,3 +1,4 @@
+package src.com.bj;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -27,6 +28,5 @@ public class LaunchPage {
         frame.setLocationRelativeTo(null);
         frame.setIconImage(logo.getImage());
         
-	}
-}
+	}}
 
