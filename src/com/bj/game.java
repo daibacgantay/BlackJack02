@@ -1,3 +1,4 @@
+package src.com.bj;
 import javax.swing.*;
 
 
@@ -530,4 +531,3 @@ public void stopSE() {
 	se.stop();
 }
 }
-    

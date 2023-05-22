@@ -1,3 +1,7 @@
+package src.com.bj;
+/**
+ * Handles all Dealer specific operations
+ */
 public class Dealer extends Person{
 
     /**
@@ -22,3 +26,4 @@ public class Dealer extends Person{
 
 
 }
+

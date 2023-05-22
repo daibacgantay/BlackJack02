@@ -1,3 +1,5 @@
+package src.com.bj;
+
 public class Card implements Comparable<Card>{
 
     private Suit suit;
@@ -70,6 +72,3 @@ public class Card implements Comparable<Card>{
        }
    }
 }
-    
-    
-
