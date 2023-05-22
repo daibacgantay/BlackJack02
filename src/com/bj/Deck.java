@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-/** deck of cards
- 
+/**
+ * A deck of cards
+ */
 public class Deck {
 
     //An arraylist to hold the deck of Cards
@@ -147,6 +148,6 @@ public class Deck {
     }
 
 
-
+}
 
 
