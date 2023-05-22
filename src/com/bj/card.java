@@ -1,45 +1,74 @@
-public class Card implements Comparable<Card> {
-    private suit suit;
-    private rank rank;
+public class Card implements Comparable<Card>{
 
+    private Suit suit;
+    private Rank rank;
 
-    public Card(suit suit, rank rank){
-        this.suit = suit;
-        this.rank = rank;
-    }
+   /**
+    *
+    * @param suit  The Suit of the card to be created
+    * @param rank  The Rank of the card to be created
+    */
+   public Card(Suit suit, Rank rank){
+       this.suit = suit;
+       this.rank = rank;
+   }
 
-    public Card(Card card){
-        this.suit = card.getsuit();
-        this.rank = card.getrank();
-    }
+   /**
+    * Copy constructor
+    * @param card the card being copied
+    */
+   public Card(Card card){
+       this.suit = card.getSuit();
+       this.rank = card.getRank();
+   }
 
-    public int getValue(){
-        return rank.rankValue;
-    }
-    public suit getsuit(){
-        return suit;
-    }
-    public rank getrank(){
-        return rank;
-    }
+   /**
+    *
+    * @return  The numerical value of the Card
+    */
+   public int getValue(){
+       return rank.rankValue;
+   }
 
-    public String toString(){
-        return("["+rank+" of "+ suit + "] ("+this.getValue()+")");
-    }
+   /**
+    *
+    * @return The suit of the Card.
+    */
+   public Suit getSuit(){
+       return suit;
+   }
 
+   public Rank getRank(){
+       return rank;
+   }
 
-    public int compareTo(Card c){
-        if(this.getValue() > c.getValue()){
-            return 1;
-        }
-        else if(this.getValue() < c.getValue()){
-            return -1;
-        }
-        else{
-            return 0;
-        }
-    }
+   /**
+    *
+    * @return The Card as a readable string
+    */
+   public String toString(){
+       return ("["+rank+" of "+ suit + "] ("+this.getValue()+")");
 
+   }
+
+   /**
+    * Compare a card to another card, returning 1 if this is higher, -1 if this is lower, in case we want to sort cards
+    * @param c
+    * @return
+    */
+   @Override
+   public int compareTo(Card c) {
+       //if this card is greater than the other card
+       if(this.getValue() > c.getValue()){
+           return 1;
+       }
+       else if(this.getValue() < c.getValue()){
+           return -1;
+       }
+       else{
+           return 0;
+       }
+   }
 }
     
     
