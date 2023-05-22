@@ -1,3 +1,4 @@
+package src.com.bj;
 /**
  * Contains the suits of a Card, Names
  */

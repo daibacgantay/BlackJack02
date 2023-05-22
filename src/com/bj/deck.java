@@ -1,10 +1,10 @@
+package src.com.bj;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-/**
- * A deck of cards
- */
+/** deck of cards
+ 
 public class Deck {
 
     //An arraylist to hold the deck of Cards
@@ -147,4 +147,6 @@ public class Deck {
     }
 
 
-}
+
+
+

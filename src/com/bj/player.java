@@ -1,6 +1,4 @@
-/**
- * Handles all Player specific operations
- */
+package src.com.bj;
 public class Player extends Person {
 
 
