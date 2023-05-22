@@ -513,6 +513,47 @@ public class Game extends JPanel {
             btnNext.setVisible(true);
 
         }
+	// Check if dealer has Double Aces to start
+        if (dealer.hasDoubleaces()) {
+            // Show the dealer has Double Aces
+            dealer.printHand(lblDealerCards);
+
+            // Check if the player also has Double Aces
+            if (player.hasDoubleaces()) {
+            	playSE(".//res//raw.wav");
+                // End the round with a push
+                lblGameMessage.setText("Both DOUBLE ACES - Push");
+                pushes++;
+                // New round buttons
+                btnHit.setVisible(false);
+                btnStand.setVisible(false);
+                btnNext.setVisible(true);
+            } else {
+            	playSE(".//res//oi.wav");
+                lblGameMessage.setText("Dealer has DOUBLE ACES!");
+                dealer.printHand(lblDealerCards);
+                losses++;
+                // player lost, start a new round
+                btnHit.setVisible(false);
+                btnStand.setVisible(false);
+                btnNext.setVisible(true);
+            }
+        }
+
+        // Check if player has Double Aces to start
+        // If we got to this point, we already know the dealer didn't have blackjack
+        if (player.hasDoubleaces()) {
+        	playSE(".//res//bj.wav");
+            // say player has blackjack
+            lblGameMessage.setText("You have DOUBLE ACES!");
+            // update score
+            wins++;
+            // make next round button only visible button
+            btnHit.setVisible(false);
+            btnStand.setVisible(false);
+            btnNext.setVisible(true);
+
+        } 
         
     }
 private void playSE(String Sound) {
