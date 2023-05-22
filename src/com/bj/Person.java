@@ -84,6 +84,18 @@ public abstract class Person {
             return false;
         }
     }
+    
+    public boolean hasDoubleaces(){
+        
+        if(getHand().countAce() == 2 ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+  
 
 
 
