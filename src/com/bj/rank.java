@@ -1,3 +1,4 @@
+package src.com.bj;
 /**
  * Contains the Ranks of Cards, Names, and Values
  */

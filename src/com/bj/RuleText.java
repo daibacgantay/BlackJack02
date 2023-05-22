@@ -1,5 +1,4 @@
 package src.com.bj;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -76,5 +75,5 @@ import javax.swing.*;
 	        } catch(Exception ex){
 	          ex.printStackTrace();
 	        }
-	     }
-        }
+	     }}
+	    
