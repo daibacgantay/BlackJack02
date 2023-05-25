@@ -1,7 +1,7 @@
 package src.com.bj;
-/**
- * Contains the Ranks of Cards, Names, and Values
- */
+
+ // Contains the Ranks of Cards, Names, and Values
+ 
 public enum Rank {
     ACE("Ace", 11),
     TWO("Two", 2),
