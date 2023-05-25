@@ -85,7 +85,7 @@ public abstract class Person {
         }
     }
     
-    public boolean hasDoubleaces(){
+public boolean hasDoubleaces(){
         
         if(getHand().countAce() == 2 ){
             return true;
@@ -94,8 +94,6 @@ public abstract class Person {
             return false;
         }
     }
-    
-  
 
 
 
