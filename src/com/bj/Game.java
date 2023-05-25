@@ -4,9 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Contains all Game logic
- */
+
+  //Contains all Game logic
+ 
 public class Game extends JPanel {
 
     // Constants
@@ -34,9 +34,9 @@ public class Game extends JPanel {
 	SE se = new SE();
 	
 
-    /**
-     * Constructor for Game, creates our variables and starts the Game
-     */
+    
+      //Constructor for Game, creates our variables and starts the Game
+     
     public Game() {
     	background = new ImageIcon(IMAGE_DIR + "backgroundd.png").getImage().getScaledInstance(800, 600, Image.SCALE_SMOOTH);
 
@@ -57,14 +57,11 @@ public class Game extends JPanel {
         //startRound();
     }
 
-    /**
-     * Set up the GUI for the Game
-     * Adds buttons and labels to the JPanel
-     */
+    
    
     
    
-   
+   //setupMenu for the game
     private void setupMenu() {
     	this.setSize(800, 500);
     	btnPlay = new JButton("Play");
@@ -104,17 +101,7 @@ public class Game extends JPanel {
     	//lblWallpaper.setBackground(Color.cyan);
     	
     	
-    	
-    	
-    
- 
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+   	
     	
     	this.add(btnRule);
     	this.add(btnPlay);
@@ -133,9 +120,7 @@ public class Game extends JPanel {
             	lblWallpaper.setVisible(false);
             	playSE(".//res//click.wav");
             	
-                
-                
-            	
+        	
                setupGUI();
                startRound();
                
@@ -201,7 +186,7 @@ public class Game extends JPanel {
 //    	btnBet.setBackground(Color.YELLOW);
 //    	btnBet.setBorder(BorderFactory.createLoweredBevelBorder());
 //    	btnBet.setForeground(Color.RED);
-        // need this layout so we can use absolute positioning
+        
         this.setLayout(null);
         this.setVisible(true);
        
@@ -230,11 +215,11 @@ public class Game extends JPanel {
             lblPlayerCards[i] = new JLabel(new ImageIcon(new ImageIcon(IMAGE_DIR + "CardDown.png").getImage()
                     .getScaledInstance(CARD_WIDTH, CARD_HEIGHT, Image.SCALE_SMOOTH)));
 
-            // Use setBounds to set the width/height of each card, and their positions
+           
             lblDealerCards[i].setBounds(initialCardX, initialCardY, CARD_WIDTH, CARD_HEIGHT);
             lblPlayerCards[i].setBounds(initialCardX, initialCardY + 250, CARD_WIDTH, CARD_HEIGHT);
 
-            // add the JLabel to the JPanel so we can see it later
+            
             this.add(lblDealerCards[i]);
             this.add(lblPlayerCards[i]);
 
@@ -266,7 +251,7 @@ public class Game extends JPanel {
         lblGameMessage.setFont(new Font("Arial", 1, 20));
         this.add(lblGameMessage);
 
-        // hand values on display
+        // hand values on díplay
         lblDealerHandVal = new JLabel("Dealer's Hand Value:");
         lblPlayerHandVal = new JLabel("Player's Hand Value:");
         lblDealerHandVal.setBounds(20, 280, 300, 50);
@@ -280,8 +265,7 @@ public class Game extends JPanel {
         lblPlayerHandVal.setForeground(Color.WHITE);
         lblScore.setForeground(Color.WHITE);
 
-        // listen for button clicks
-        // When someone clicks the Hit button
+      
         btnHit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -300,7 +284,7 @@ public class Game extends JPanel {
             }
         });
 
-        // when someone clicks the "Stand" button
+    
         btnStand.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -313,14 +297,14 @@ public class Game extends JPanel {
                 // also reveal all the dealer's cards, so we can see what they drew
                 dealer.printHand(lblDealerCards);
 
-                // make only the next round button visible, they cannot hit/stand at this point
+                
                 btnHit.setVisible(false);
                 btnStand.setVisible(false);
                 btnNext.setVisible(true);
             }
         });
 
-        // someone hits the next round button
+    
         btnNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -328,7 +312,7 @@ public class Game extends JPanel {
             	x=0;
             	y=0;
             	
-                // reset buttons and start next round
+                
                 btnNext.setVisible(false);
                 btnHit.setVisible(true);
                 btnStand.setVisible(true);
@@ -339,13 +323,13 @@ public class Game extends JPanel {
     }
 
     
-		// TODO Auto-generated method stub
+		
 		
 	
 
-	/**
-     * This is called when player hits "Hit" button to see if they busted
-     */
+	
+     //This is called when player hits "Hit" button to see if they busted
+     
     private void checkBusts() {
         // Check if they busted
         if (player.getHand().calculatedValue() > 21) {
@@ -361,9 +345,9 @@ public class Game extends JPanel {
         }
     }
 
-    /**
-     * At the end of each round, this method is called to see who won
-     */
+    
+     //At the end of each round, this method is called to see who won
+     
     private void checkWins() {
 
         // Show value of dealers hand
@@ -389,10 +373,10 @@ public class Game extends JPanel {
         }
     }
 
-    /**
-     * This is called when player hits "Hit" button to see if they have 21
-     * Prevents them from hitting again
-     */
+    
+      //This is called when player hits "Hit" button to see if they have 21
+      //Prevents them from hitting again
+     
     private void checkPlayer21(){
         if(player.getHand().calculatedValue() <=21 && x==3){
         	playSE(".//res//21.wav");
@@ -415,9 +399,9 @@ public class Game extends JPanel {
             
         }
         }
-    /**
-     * Dealer draws cards until they have a hand value of 17 or higher
-     */
+    
+    // Dealer draws cards until they have a hand value of 17 or higher
+     
     private void dealersTurn() {
 
         // Now it's the dealer's turn
@@ -432,9 +416,9 @@ public class Game extends JPanel {
         }
     }
 
-    /**
-     * Make the screen background a green color like a card table
-     */
+    
+     // Make the screen background a green color like a card table
+     
     public void paintComponent(Graphics g) {
     	//
         super.paintComponent(g);
@@ -444,10 +428,10 @@ public class Game extends JPanel {
         //g.fillRect(0, 0, 1000, 1000);
     }
 
-    /**
-     * Updates everything on the screen. Cards, Values, Scores, etc. except dealer
-     * cards/value
-     */
+    
+     //Updates everything on the screen. Cards, Values, Scores, etc. except dealer
+     cards/value
+     
     private void updateScreen() {
 
         lblPlayerHandVal.setText("Player's Hand Value: " + player.getHand().calculatedValue());
@@ -457,16 +441,16 @@ public class Game extends JPanel {
 
     }
 
-    /**
-     * Start a new round, display score, give out cards, check for BlackJack, ask
-     * player what they want to do
-     */
+    
+     //Start a new round, display score, give out cards, check for BlackJack, ask
+     player what they want to do
+     
     private void startRound() {
-        /*
-         * wins = 0; losses = 0; pushes = 1;
-         * Card testCard = new Card(Suit.CLUB,Rank.NINE);
-         * Card testCard2 = new Card(Suit.CLUB, Rank.TEN);
-         */
+        /
+          //wins = 0; losses = 0; pushes = 1;
+         // Card testCard = new Card(Suit.CLUB,Rank.NINE);
+          //Card testCard2 = new Card(Suit.CLUB, Rank.TEN);
+         /
         // If this isn't the first time, display the users score and put their cards
         // back in the deck
         if (wins > 0 || losses > 0 || pushes > 0) {
@@ -489,7 +473,7 @@ public class Game extends JPanel {
         player.getHand().takeCardFromDeck(deck);
         player.getHand().takeCardFromDeck(deck);
 
-        // in startRound after you give the player and dealer their two cards...
+        // in startRound after you give the player and dealer their two cards
         updateScreen();
         lblDealerHandVal.setText("Dealer's hand value: " + dealer.getHand().getCard(0).getValue() + " + ?");
         lblGameMessage.setText("Starting round! Hit or Stand?");
@@ -589,18 +573,13 @@ public class Game extends JPanel {
              losses++;
          }
     }
-    
+  //Play the sound effect  
 private void playSE(String Sound) {
 	
 	se.setFile(Sound);
 	se.play();	
 }
-public void playMusic(String Sound) {
-	
-	se.setFile(Sound);
-	se.play();
-	se.loop();
-}
+//Stop the múic
 public void stopSE() {
 	
 	se.stop();
