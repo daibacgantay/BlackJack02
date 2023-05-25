@@ -28,7 +28,7 @@ public class Game extends JPanel {
     // labels to show images of cards
     private JLabel[] lblDealerCards, lblPlayerCards;
     // few more labels for showing important stats
-    private JLabel lblScore, lblPlayerHandVal, lblDealerHandVal, lblGameMessage, lblWallpaper, lblBetScroll;
+    private JLabel lblScore, lblPlayerHandVal, lblDealerHandVal, lblGameMessage, lblWallpaper;
     private Image background;
     
 	SE se = new SE();
