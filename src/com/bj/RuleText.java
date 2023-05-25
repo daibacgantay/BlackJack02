@@ -65,7 +65,7 @@ import javax.swing.*;
 	     {
 	        try{
 	            //the file path
-	            String path = "C:\\Users\\DELL\\OneDrive - VietNam National University - HCM INTERNATIONAL UNIVERSITY\\Documents\\java_guiblackjack-main\\java_guiblackjack-main\\src\\com\\kevinsguides\\Rule.txt";
+	            String path = "F:\New folder\.git\blackjack\BlackJack02-2\src\com\bj\\Rule.txt";
 	            File file = new File(path);
 	            FileReader fr = new FileReader(file);
 	            while(fr.read() != -1){
