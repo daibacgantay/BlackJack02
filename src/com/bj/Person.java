@@ -2,17 +2,17 @@ package src.com.bj;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Used for shared logic between the dealer and player
- */
+
+ //Used for shared logic between the dealer and player
+ 
 public abstract class Person {
 
     private Hand hand;
     private String name;
 
-    /**
-     * Create a new Person
-     */
+   
+     // Create a new Person
+     
     public Person(){
         this.hand = new Hand();
         this.name = "";
@@ -34,9 +34,9 @@ public abstract class Person {
     }
 
 
-    /**
-     * Update the image icons for the player's hand
-     */
+    
+     //Update the image icons for the player's hand
+     
     public void printHand(JLabel[] cardPics){
         System.out.println(this.name + "'s hand looks like this:");
         System.out.println(this.hand + " Valued at: " + this.hand.calculatedValue());
@@ -56,10 +56,9 @@ public abstract class Person {
 
     }
 
-    /**
-     * Player takes a card from the deck
-     * @param deck
-     */
+   
+     // Player takes a card from the deck
+     
     public void hit(Deck deck, Deck discard){
 
         //If there's no cards left in the deck
@@ -72,10 +71,10 @@ public abstract class Person {
     }
 
 
-    /**
-     * Check if the player has blackjack
-     * @return boolean true if blackjack, false if not
-     */
+
+      //Check if the player has blackjack
+      //@return boolean true if blackjack, false if not
+     
     public boolean hasBlackjack(){
         if(this.getHand().calculatedValue() == 21){
             return true;
