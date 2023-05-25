@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Hand {
 
-    public ArrayList<Card> hand;
+    private ArrayList<Card> hand;
 
     public Hand(){
         hand = new ArrayList<Card>();
@@ -80,10 +80,8 @@ public class Hand {
                 value -= 10;
             }
         }
-       
         return value;
 
-        
     }
     public int countAce(){
         int countAce = 0;
