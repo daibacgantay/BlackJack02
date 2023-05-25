@@ -1,4 +1,6 @@
 package src.com.bj;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 public class Main {
 
     public static void main(String[] args) {
@@ -21,4 +23,6 @@ public class Main {
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
             frame.setIconImage(logo.getImage());
+    }
+}
     
