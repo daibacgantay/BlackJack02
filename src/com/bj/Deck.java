@@ -16,16 +16,12 @@ public class Deck {
     }
 
     // Copy Constructor
-     
-     
-    public Deck(Deck c){
+    
+     public Deck(Deck c){
         Collections.copy(this.deck, c.getCards());
     }
-
-    /**
-     * 
-     * @param makeDeck makes a standard deck of cards if true
-     */
+//we create a new ArrayList to store the cards, 
+ //and then use the nested loop to create each card and add it to the list. We also have a shuffle method that uses the
     public Deck(boolean makeDeck){
         deck = new ArrayList<Card>();
         if(makeDeck){
@@ -45,10 +41,10 @@ public class Deck {
         deck.add(card);
     }
 
-    /**
-     *
-     * @param cards an arraylist of cards to be added to this deck
-     */
+    
+    
+     //cards an arraylist of cards to be added to this deck
+     
     public void addCards(ArrayList<Card> cards){
         deck.addAll(cards);
     }
@@ -82,10 +78,9 @@ public class Deck {
 
     }
 
-    /**
-     *
-     * @return true if the deck still has cards left
-     */
+    
+     
+     // true if the deck still has cards left     
     public boolean hasCards(){
         if (deck.size()>0){
             return true;
@@ -95,10 +90,9 @@ public class Deck {
         }
     }
 
-    /**
-     *
-     * @return The number of cards left in the deck
-     */
+    
+    
+      //The number of cards left in the deck     
     public int cardsLeft(){
         return deck.size();
     }
