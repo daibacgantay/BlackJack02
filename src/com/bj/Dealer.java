@@ -1,22 +1,16 @@
 package src.com.bj;
-/**
- * Handles all Dealer specific operations
- */
+//chứa những operations của Dealer
 public class Dealer extends Person{
 
-    /**
-     * Create a new Dealer
-     */
+    
     public Dealer(){
 
-        //Name the dealer "Dealer"
+        //đặt tên dealer là Dealer
         super.setName("Dealer");
 
     }
 
-    /**
-     * Prints the dealer's first hand, with one card face down.
-     */
+   //in ra hand của Dealer (có một lá úp)
     public void printFirstHand(){
         System.out.println("The dealer's hand looks like this:");
         System.out.println(super.getHand().getCard(0));

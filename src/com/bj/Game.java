@@ -4,6 +4,11 @@ import javax.swing.*;
 
 
 
+import javax.swing.*;
+
+
+
+import com.kevinsguides.SE;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,15 +31,17 @@ public class Game extends JPanel {
     private Deck deck, discarded;
     private Dealer dealer;
     private Player player;
-    private int wins, losses, pushes;
+    private int wins, losses, pushes; //money;
+    public static int x =0;
+    public static int y =0;
 
     // three buttons for "Hit" "Stand" and "Next Round" actions
-    private JButton btnHit, btnStand, btnNext, btnPlay, btnExit, btnRule;
+    private JButton btnHit, btnStand, btnNext, btnPlay, btnExit, btnRule; //btnBet;
 
     // labels to show images of cards
     private JLabel[] lblDealerCards, lblPlayerCards;
     // few more labels for showing important stats
-    private JLabel lblScore, lblPlayerHandVal, lblDealerHandVal, lblGameMessage, lblWallpaper;
+    private JLabel lblScore, lblPlayerHandVal, lblDealerHandVal, lblGameMessage, lblWallpaper, lblBetScroll;
     private Image background;
     
 	SE se = new SE();
@@ -83,7 +90,7 @@ public class Game extends JPanel {
     	
     	
     	btnExit = new JButton("Exit");
-    	btnExit.setBounds(330,400, 80, 30);
+    	btnExit.setBounds(330,470, 80, 30);
     	btnExit.setFocusable(false);
     	btnExit.setFont(new Font("Arial", Font.BOLD, 15));
     	btnExit.setBackground(Color.WHITE);
@@ -91,7 +98,7 @@ public class Game extends JPanel {
     	btnExit.setForeground(Color.RED);
     	
     	btnRule = new JButton("Rule");
-    	btnRule.setBounds(330, 470, 80, 30);
+    	btnRule.setBounds(330,400, 80, 30);
     	btnRule.setFocusable(false);
     	btnRule.setFont(new Font("Arial", Font.BOLD, 15));
     	btnRule.setBackground(Color.WHITE);
@@ -199,6 +206,14 @@ public class Game extends JPanel {
     	btnNext.setBackground(Color.LIGHT_GRAY);
     	btnNext.setBorder(BorderFactory.createLoweredBevelBorder());
     	btnNext.setForeground(Color.RED);
+//    	btnBet = new JButton("Bet");
+//      btnBet.setBounds(180, 10, 60, 20);
+//      btnBet.setVisible(false);
+//      btnBet.setFocusable(false);
+//    	btnBet.setFont(new Font("Arial", Font.BOLD, 15));
+//    	btnBet.setBackground(Color.YELLOW);
+//    	btnBet.setBorder(BorderFactory.createLoweredBevelBorder());
+//    	btnBet.setForeground(Color.RED);
         // need this layout so we can use absolute positioning
         this.setLayout(null);
         this.setVisible(true);
@@ -208,6 +223,7 @@ public class Game extends JPanel {
         this.add(btnHit);
         this.add(btnStand);
         this.add(btnNext);
+        //this.add(btnBet);
        
 
         // Arrays to hold the dealer and player card images
@@ -244,9 +260,18 @@ public class Game extends JPanel {
 
         // setup all the labels and such
         // make scoreboard
-        lblScore = new JLabel("[Wins: 0]   [Losses: 0]   [Pushes: 0]");
+        lblScore = new JLabel("[Wins: 0]   [Losses: 0]   [Pushes: 0]   [Money: 0]");
         lblScore.setBounds(450, 10, 300, 50);
         this.add(lblScore);
+        
+//        lblBetScroll = new JLabel();
+//        JSlider slider = new JSlider(0, 100, 10);
+//        slider.setPreferredSize(new Dimension(400,200));
+//        //lblBetScroll.setBounds(450,200, 300, 40);
+//        lblBetScroll.add(slider);
+//        this.add(lblBetScroll);
+//       
+        
 
         // message board
         lblGameMessage = new JLabel("Starting round! Hit or Stand?");
@@ -273,9 +298,13 @@ public class Game extends JPanel {
         btnHit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	if(x<=3) {
+            		x++;
+            	
                 // make the player hit the deck
                 player.hit(deck, discarded);
                 playSE(".//res//hitcard.wav");
+            	}
                 // update screen with their new card, and their score
                 updateScreen();
                 checkBusts();
@@ -309,6 +338,8 @@ public class Game extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
             	stopSE();
+            	x=0;
+            	y=0;
             	
                 // reset buttons and start next round
                 btnNext.setVisible(false);
@@ -376,9 +407,9 @@ public class Game extends JPanel {
      * Prevents them from hitting again
      */
     private void checkPlayer21(){
-        if(player.getHand().calculatedValue() == 21){
+        if(player.getHand().calculatedValue() <=21 && x==3){
         	playSE(".//res//21.wav");
-            lblGameMessage.setText("You have 21!");
+            lblGameMessage.setText("MAGIC FIVE!");
             //update score
             wins++;
             //make next round button only visible button
@@ -386,8 +417,17 @@ public class Game extends JPanel {
             btnStand.setVisible(false);
             btnNext.setVisible(true);
         }
-    }
 
+        else if(player.getHand().calculatedValue() ==21 ){
+            playSE(".//res//21.wav");
+            lblGameMessage.setText("  You have 21!");
+            wins++;
+            btnHit.setVisible(false);
+            btnStand.setVisible(false);
+            btnNext.setVisible(true);
+            
+        }
+        }
     /**
      * Dealer draws cards until they have a hand value of 17 or higher
      */
@@ -397,8 +437,11 @@ public class Game extends JPanel {
         // Dealer will continue drawing until hand is valued at 17 or higher
         while (dealer.getHand().calculatedValue() < 17) {
             // dealer hits deck
+            if(y<=3){
             dealer.hit(deck, discarded);
             updateScreen();
+            y++;
+            }
         }
     }
 
@@ -423,7 +466,7 @@ public class Game extends JPanel {
         lblPlayerHandVal.setText("Player's Hand Value: " + player.getHand().calculatedValue());
         player.printHand(lblPlayerCards);
         // score
-        lblScore.setText("[Wins: " + wins + "]   [Losses: " + losses + "]   [Pushes: " + pushes + "]");
+        lblScore.setText("[Wins: " + wins + "]   [Losses: " + losses + "]   [Pushes: " + pushes + "]   " );
 
     }
 
@@ -513,7 +556,7 @@ public class Game extends JPanel {
             btnNext.setVisible(true);
 
         }
-	// Check if dealer has Double Aces to start
+     // Check if dealer has Double Aces to start
         if (dealer.hasDoubleaces()) {
             // Show the dealer has Double Aces
             dealer.printHand(lblDealerCards);
@@ -553,9 +596,13 @@ public class Game extends JPanel {
             btnStand.setVisible(false);
             btnNext.setVisible(true);
 
-        } 
-        
+        }
+        if( y == 3 && dealer.getHand().calculatedValue() <= 21 ){
+            lblGameMessage.setText("Dealer have MAGIC FIVE!");
+             losses++;
+         }
     }
+    
 private void playSE(String Sound) {
 	
 	se.setFile(Sound);

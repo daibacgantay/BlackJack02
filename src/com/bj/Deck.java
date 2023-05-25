@@ -3,32 +3,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-/**
- * A deck of cards
- */
+//Bộ bài sẽ chứa những lá bài và có operation xào bài
 public class Deck {
 
     //An arraylist to hold the deck of Cards
     private ArrayList<Card> deck;
 
 
-    /**
-     * Create an empty deck of cards
-     */
+   
     public Deck(){
         deck = new ArrayList<Card>();
     }
 
-    /**
-     * Copy Constructor
-     * @param c deck being copied
-     */
+    // Copy Constructor
+     
+     
     public Deck(Deck c){
         Collections.copy(this.deck, c.getCards());
     }
 
     /**
-     * Create a standard deck of cards
+     * 
      * @param makeDeck makes a standard deck of cards if true
      */
     public Deck(boolean makeDeck){
@@ -45,10 +40,7 @@ public class Deck {
         }
     }
 
-    /**
-     *
-     * @param card The card being added to this deck
-     */
+   // method bỏ card vào
     public void addCard(Card card){
         deck.add(card);
     }
@@ -61,12 +53,9 @@ public class Deck {
         deck.addAll(cards);
     }
 
-    /**
-     *
-     * @return Every value of the deck as a String with line separators
-     */
+   // trả lại tất cả Value của lá bài trong bộ bài
     public String toString(){
-        //A string to hold everything we're going to return
+        
         String output = "";
 
         for(Card card: deck){
@@ -76,24 +65,19 @@ public class Deck {
         return output;
     }
 
-    /**
-     * Shuffle the deck of Cards at random
-     */
+    //xào bài
     public void shuffle(){
         Collections.shuffle(deck, new Random());
     }
 
-    /**
-     *
-     * @return The card taken from the deck
-     */
+   //trả lại lá bài lấy ra trong bộ bài
     public Card takeCard(){
 
-            //Take a copy of the first card from the deck
+            //lấy lá bài copy đầu tiên
             Card cardToTake = new Card(deck.get(0));
-            //Remove the card from the deck
+            //bỏ ra khỏi bộ bài
             deck.remove(0);
-            //Give the card back
+            //trả lại lá bài đó
             return cardToTake;
 
     }
@@ -119,27 +103,22 @@ public class Deck {
         return deck.size();
     }
 
-    /**
-     *
-     * @return the arraylist containing all the cards in this deck
-     */
+    //return cái arrylist
     public ArrayList<Card> getCards() {
         return deck;
     }
 
-    /**
-     * Empties out this Deck
-     */
+    //Xoa bai trong Deck
     public void emptyDeck(){
         deck.clear();
     }
 
 
-    /**
-     * Take all the cards from a discarded deck and place them in this deck, shuffled.
-     * Clear the old deck
-     * @param discard - the deck we're getting the cards from
-     */
+    
+      //Take all the cards from a discarded deck and place them in this deck, shuffled.
+      //Clear the old deck
+    // discard - the deck we're getting the cards from
+     
     public void reloadDeckFromDiscard(Deck discard){
         this.addCards(discard.getCards());
         this.shuffle();
